@@ -1,0 +1,32 @@
+Instructions
+********************************
+
+There are three basic steps to running the benchmark:
+
+	1. Generate test inputs
+	2. Calculate the sum from those inputs to use as a comparison later
+	3. Run the suite of timings
+
+********************************
+
+1. Generate test inputs
+
+	Run 'make' to build the gen_file and calc_sum utilities.
+	Run 'gen_file numbers.dat n' to generate a stream of numbers.
+		NOTE: n is the exponent such that N = 2**n numbers are generated
+
+2. Calculate the sum from those inputs to use as a comparison later
+
+	Run 'calc_sum output.dat alpha' where alpha is the constant in the SAXPY operation
+		NOTE: Currently, this is hard-coded as '3.0' in the tests, so use that value here
+	
+3. Run the suite of timings	
+	
+	You can edit the 'time.pl' file to change compilers and switches.
+	
+	To run the timings test, use 'perl time.pl --timings numbers.dat cmp_sum output.csv'
+	where 'cmp_sum' is the output from running 'calc_sum'.
+	
+	If you would like to inspect the object code generated for any given test, then you
+	can use 'perl time.pl test compiler arch_index opt_index'. See 'time.pl' for details.
+	The output will be saved to '__temp__'.
