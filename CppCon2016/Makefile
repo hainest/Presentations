@@ -5,9 +5,9 @@ BASEARCH := -m64 -mfpmath=sse
 .DEFAULT_GOAL = all
 .PHONY = all ideal cstyle clean dist-clean dump
 
-SRCS := calc_sum.cpp gen_files.cpp streaming.cpp
+SRCS := calc_sum.cpp gen_file.cpp streaming.cpp
 OBJS := $(patsubst %.cpp, %.o, $(SRCS))
-EXEC := calc_sum gen_files
+EXEC := calc_sum gen_file
 
 all: Makefile $(EXEC)
 
@@ -24,7 +24,7 @@ streaming: streaming.o
 $(EXEC): %: %.o
 	@ $(CXX) $(OPT) $(BASEARCH) $(ARCH) $< -o $@
 
-gen_files.o : gen_files.cpp Makefile
+gen_file.o : gen_file.cpp Makefile
 	@ $(CXX) $(STD) $(CXXFLAGS) $(BASEARCH) $(ARCH) -march=native -O3 -c -o $@ $<
 
 calc_sum.o: calc_sum.cpp Makefile
